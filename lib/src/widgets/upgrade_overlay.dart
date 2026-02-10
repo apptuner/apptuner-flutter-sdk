@@ -47,10 +47,17 @@ class UpgradeOverlay extends StatelessWidget {
     final url = Platform.isAndroid ? androidSource : appleSource;
     if (url != null && url.isNotEmpty) {
       final uri = Uri.parse(url);
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      } else {
-        debugPrint('Apptuner: Could not launch $url');
+      try {
+        if (await canLaunchUrl(uri)) {
+          await launchUrl(uri, mode: LaunchMode.externalApplication);
+        } else {
+          // Fallback: Try to launch anyway, as canLaunchUrl might return false 
+          // on Android 11+ if queries are missing in manifest, but intent might still work.
+          debugPrint('Apptuner: canLaunchUrl returned false, attempting launch anyway for $url');
+          await launchUrl(uri, mode: LaunchMode.externalApplication);
+        }
+      } catch (e) {
+        debugPrint('Apptuner: Could not launch $url. Error: $e');
       }
     } else {
       debugPrint('Apptuner: No store URL provided for ${Platform.operatingSystem}');
@@ -115,7 +122,7 @@ class UpgradeOverlay extends StatelessWidget {
 
   Widget _buildUpdateScreen(BuildContext context) {
     return Material(
-      color: Colors.black.withValues(alpha: 0.8), // Semi-transparent background
+      color: Colors.black, // Force black background for update as well
       child: Center(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 32),

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Initialize Apptuner with your API Key
-  await Apptuner.instance.init(
+  // Initialize apptuner with your API Key
+  await apptuner.init(
     apiKey: 'e2214bd7-ce14-4e37-8167-4b86e2b506e4', // Api Key
   );
   
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: const Icon(Icons.refresh),
             onPressed: () {
               // Manually check for updates
-              Apptuner.instance.checkUpdate();
+              apptuner.checkUpdate();
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Checked for updates')),
               );

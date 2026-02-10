@@ -6,6 +6,8 @@ import 'widgets/upgrade_overlay.dart';
 export 'models/tuner_config.dart' show TunerConfig;
 export 'widgets/upgrade_overlay.dart' show ApptunerStyle, UpgradeOverlay;
 
+Apptuner get apptuner => Apptuner.instance;
+
 class Apptuner extends ChangeNotifier {
   static final Apptuner instance = Apptuner._internal();
 
@@ -67,20 +69,20 @@ class _ApptunerWrapperState extends State<ApptunerWrapper> with WidgetsBindingOb
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    Apptuner.instance.addListener(_onConfigChanged);
+    apptuner.addListener(_onConfigChanged);
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    Apptuner.instance.removeListener(_onConfigChanged);
+    apptuner.removeListener(_onConfigChanged);
     super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      Apptuner.instance.checkUpdate();
+      apptuner.checkUpdate();
     }
   }
 
@@ -90,22 +92,24 @@ class _ApptunerWrapperState extends State<ApptunerWrapper> with WidgetsBindingOb
 
   @override
   Widget build(BuildContext context) {
-    final tuner = Apptuner.instance;
+    final tuner = apptuner;
     final showOverlay = tuner.isMaintenance || tuner.forceUpgrade;
 
     return Stack(
       children: [
         widget.child,
         if (showOverlay)
-          widget.builder != null 
-            ? widget.builder!(context, tuner.config!)
-            : UpgradeOverlay(
-                isMaintenance: tuner.isMaintenance && !tuner.forceUpgrade,
-                message: tuner.message,
-                androidSource: tuner.androidSource,
-                appleSource: tuner.appleSource,
-                style: widget.style,
-              ),
+          Positioned.fill(
+            child: widget.builder != null 
+              ? widget.builder!(context, tuner.config!)
+              : UpgradeOverlay(
+                  isMaintenance: tuner.isMaintenance && !tuner.forceUpgrade,
+                  message: tuner.message,
+                  androidSource: tuner.androidSource,
+                  appleSource: tuner.appleSource,
+                  style: widget.style,
+                ),
+          ),
       ],
     );
   }
