@@ -1,7 +1,9 @@
 # Apptuner
 
 [![pub package](https://img.shields.io/pub/v/apptuner.svg)](https://pub.dev/packages/apptuner)
-[![GitHub stars](https://img.shields.io/github/stars/apptuner/flutter-sdk?style=social)](https://github.com/apptuner/flutter-sdk) [![GitHub forks](https://img.shields.io/github/forks/apptuner/flutter-sdk?style=social)](https://github.com/apptuner/flutter-sdk) [![View Source](https://img.shields.io/badge/GitHub-View%20Source-181717?style=flat&logo=github)](https://github.com/apptuner/flutter-sdk)
+[![GitHub stars](https://img.shields.io/github/stars/apptuner/apptuner-flutter-sdk?style=social)](https://github.com/apptuner/apptuner-flutter-sdk)
+[![GitHub forks](https://img.shields.io/github/forks/apptuner/apptuner-flutter-sdk?style=social)](https://github.com/apptuner/apptuner-flutter-sdk)
+[![View Source](https://img.shields.io/badge/GitHub-View%20Source-181717?style=flat&logo=github)](https://github.com/apptuner/apptuner-flutter-sdk)
 
 Integrate **Apptuner** into your Flutter application with just a few lines of code. The SDK automatically handles **force update** and **maintenance mode** checks — including built-in overlay screens that block user interaction when required.
 

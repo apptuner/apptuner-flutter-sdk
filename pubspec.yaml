@@ -1,6 +1,6 @@
 name: apptuner
 description: A Flutter SDK for Apptuner to handle force updates and maintenance mode.
-version: 1.0.0
+version: 1.0.1
 homepage: https://www.apptuner.dev
 repository: https://github.com/apptuner/apptuner-flutter-sdk
 

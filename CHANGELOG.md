@@ -1,3 +1,7 @@
+## 1.0.1
+
+* Improve documentation coverage for public APIs.
+
 ## 1.0.0
 
 * Initial release of Apptuner.

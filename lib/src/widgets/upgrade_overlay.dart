@@ -3,17 +3,39 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// Styling configuration for the Apptuner overlay screens.
+///
+/// Use this class to customize the colors, gradients, and text styles
+/// of the built-in maintenance and force update screens.
 class ApptunerStyle {
+  /// The background gradient for the entire overlay screen.
   final Gradient? backgroundGradient;
+
+  /// The color of the maintenance icon.
   final Color? maintenanceIconColor;
+
+  /// The color of the update icon.
   final Color? updateIconColor;
+
+  /// The background color of the maintenance icon circle.
   final Color? maintenanceIconBackgroundColor;
+
+  /// The background color of the update icon circle.
   final Color? updateIconBackgroundColor;
+
+  /// Text style for the title ("Under Maintenance" or "Update Required").
   final TextStyle? titleStyle;
+
+  /// Text style for the message body.
   final TextStyle? messageStyle;
+
+  /// Gradient for the action button (e.g., "Update Now").
   final Gradient? buttonGradient;
+
+  /// Text style for the action button text.
   final TextStyle? buttonTextStyle;
 
+  /// Creates a new [ApptunerStyle].
   const ApptunerStyle({
     this.backgroundGradient,
     this.maintenanceIconColor,
@@ -27,13 +49,27 @@ class ApptunerStyle {
   });
 }
 
+/// A widget that displays the maintenance or force update overlay.
+///
+/// This widget is used internally by [ApptunerWrapper] but is exposed
+/// for manual usage if needed.
 class UpgradeOverlay extends StatelessWidget {
+  /// Whether to show the maintenance screen (as opposed to the update screen).
   final bool isMaintenance;
+
+  /// The message to display.
   final String? message;
+
+  /// The Google Play Store URL.
   final String? androidSource;
+
+  /// The Apple App Store URL.
   final String? appleSource;
+
+  /// Custom styling configuration.
   final ApptunerStyle? style;
 
+  /// Creates an [UpgradeOverlay].
   const UpgradeOverlay({
     super.key,
     required this.isMaintenance,
