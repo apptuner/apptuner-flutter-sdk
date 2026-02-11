@@ -22,12 +22,7 @@ class ApptunerService {
 
       final Uri uri = Uri.parse(_baseUrl).replace(queryParameters: queryParams);
 
-      final response = await http.get(
-        uri,
-        headers: {
-          'x-api-key': apiKey,
-        },
-      );
+      final response = await http.get(uri, headers: {'x-api-key': apiKey});
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);

@@ -12,23 +12,21 @@ class Apptuner extends ChangeNotifier {
   static final Apptuner instance = Apptuner._internal();
 
   Apptuner._internal();
-  
+
   ApptunerService? _service;
   TunerConfig? _config;
-  
+
   bool get isMaintenance => _config?.maintenanceActive ?? false;
   bool get forceUpgrade => _config?.forceUpgrade ?? false;
   String? get message => _config?.message;
   String? get androidSource => _config?.androidSource;
   String? get appleSource => _config?.appleSource;
-  
+
   TunerConfig? get config => _config;
 
   /// Initialize the Apptuner SDK
   /// [apiKey] : Your Apptuner Project API Key
-  Future<void> init({
-    required String apiKey,
-  }) async {
+  Future<void> init({required String apiKey}) async {
     _service = ApptunerService(apiKey: apiKey);
     await checkUpdate();
   }
@@ -39,7 +37,7 @@ class Apptuner extends ChangeNotifier {
       debugPrint('Apptuner: Warning - call init() before checkUpdate()');
       return;
     }
-    
+
     final config = await _service!.fetchConfig();
     if (config != null) {
       _config = config;
@@ -64,7 +62,8 @@ class ApptunerWrapper extends StatefulWidget {
   State<ApptunerWrapper> createState() => _ApptunerWrapperState();
 }
 
-class _ApptunerWrapperState extends State<ApptunerWrapper> with WidgetsBindingObserver {
+class _ApptunerWrapperState extends State<ApptunerWrapper>
+    with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
@@ -100,15 +99,15 @@ class _ApptunerWrapperState extends State<ApptunerWrapper> with WidgetsBindingOb
         widget.child,
         if (showOverlay)
           Positioned.fill(
-            child: widget.builder != null 
-              ? widget.builder!(context, tuner.config!)
-              : UpgradeOverlay(
-                  isMaintenance: tuner.isMaintenance && !tuner.forceUpgrade,
-                  message: tuner.message,
-                  androidSource: tuner.androidSource,
-                  appleSource: tuner.appleSource,
-                  style: widget.style,
-                ),
+            child: widget.builder != null
+                ? widget.builder!(context, tuner.config!)
+                : UpgradeOverlay(
+                    isMaintenance: tuner.isMaintenance && !tuner.forceUpgrade,
+                    message: tuner.message,
+                    androidSource: tuner.androidSource,
+                    appleSource: tuner.appleSource,
+                    style: widget.style,
+                  ),
           ),
       ],
     );

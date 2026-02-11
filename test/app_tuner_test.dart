@@ -22,10 +22,7 @@ void main() {
     });
 
     test('handles null values', () {
-      final json = {
-        'maintenance_active': false,
-        'force_upgrade': true,
-      };
+      final json = {'maintenance_active': false, 'force_upgrade': true};
 
       final config = TunerConfig.fromJson(json);
 
@@ -42,7 +39,7 @@ void main() {
         "maintenance_active": false,
         "message": "Please upgrade your app to continue.",
         "android_source": "https://r.mtdv.me/watch?v=klX423JTKE",
-        "apple_source": ""
+        "apple_source": "",
       };
 
       final config = TunerConfig.fromJson(json);

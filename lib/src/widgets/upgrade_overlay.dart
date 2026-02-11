@@ -51,16 +51,20 @@ class UpgradeOverlay extends StatelessWidget {
         if (await canLaunchUrl(uri)) {
           await launchUrl(uri, mode: LaunchMode.externalApplication);
         } else {
-          // Fallback: Try to launch anyway, as canLaunchUrl might return false 
+          // Fallback: Try to launch anyway, as canLaunchUrl might return false
           // on Android 11+ if queries are missing in manifest, but intent might still work.
-          debugPrint('Apptuner: canLaunchUrl returned false, attempting launch anyway for $url');
+          debugPrint(
+            'Apptuner: canLaunchUrl returned false, attempting launch anyway for $url',
+          );
           await launchUrl(uri, mode: LaunchMode.externalApplication);
         }
       } catch (e) {
         debugPrint('Apptuner: Could not launch $url. Error: $e');
       }
     } else {
-      debugPrint('Apptuner: No store URL provided for ${Platform.operatingSystem}');
+      debugPrint(
+        'Apptuner: No store URL provided for ${Platform.operatingSystem}',
+      );
     }
   }
 
@@ -75,7 +79,8 @@ class UpgradeOverlay extends StatelessWidget {
 
   Widget _buildMaintenanceScreen(BuildContext context) {
     return Material(
-      color: Colors.black, // Force black background for maintenance as per image
+      color:
+          Colors.black, // Force black background for maintenance as per image
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -85,7 +90,10 @@ class UpgradeOverlay extends StatelessWidget {
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: const Color(0xFFEF4444), width: 4), // Red border
+                border: Border.all(
+                  color: const Color(0xFFEF4444),
+                  width: 4,
+                ), // Red border
               ),
               child: const Icon(
                 Icons.priority_high_rounded,
@@ -106,7 +114,8 @@ class UpgradeOverlay extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              message ?? 'We are currently upgrading our servers to provide you with a better experience.',
+              message ??
+                  'We are currently upgrading our servers to provide you with a better experience.',
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.grey,
@@ -183,10 +192,7 @@ class UpgradeOverlay extends StatelessWidget {
                   ),
                   child: const Text(
                     'Update Now',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

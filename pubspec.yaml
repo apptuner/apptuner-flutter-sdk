@@ -1,10 +1,11 @@
 name: apptuner
-description: "A new Flutter package project."
-version: 0.0.1
-homepage:
+description: A Flutter SDK for Apptuner to handle force updates and maintenance mode.
+version: 1.0.0
+homepage: https://www.apptuner.dev
+repository: https://github.com/apptuner/apptuner-flutter-sdk
 
 environment:
-  sdk: ^3.9.2
+  sdk: ^3.0.0
   flutter: ">=1.17.0"
 
 dependencies:

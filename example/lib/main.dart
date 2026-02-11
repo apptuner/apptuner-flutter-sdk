@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Initialize apptuner with your API Key
   await apptuner.init(
     apiKey: 'e2214bd7-ce14-4e37-8167-4b86e2b506e4', // Api Key
   );
-  
+
   runApp(const MyApp());
 }
 
@@ -85,9 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            const Text(
-              'You have pushed the button this many times:',
-            ),
+            const Text('You have pushed the button this many times:'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,

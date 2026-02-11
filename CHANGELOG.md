@@ -1,3 +1,7 @@
-## 0.0.1
+## 1.0.0
 
-* TODO: Describe initial release.
+* Initial release of Apptuner.
+* Features:
+  * Force update check.
+  * Maintenance mode overlay.
+  * Easy integration via `ApptunerWrapper`.
