@@ -25,11 +25,36 @@ class MyApp extends StatelessWidget {
       ),
       builder: (context, child) {
         return ApptunerWrapper(
-          // Optional: Visualize customization
-          style: const ApptunerStyle(
-            // backgroundGradient: LinearGradient(
-            //   colors: [Colors.purple, Colors.blue],
-            // ),
+          style: ApptunerStyle(
+            backgroundGradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFF1B4332),
+                Color(0xFF081C15),
+              ],
+            ),
+            maintenanceIconColor: Colors.white,
+            updateIconColor: const Color(0xFFF4D03F),
+            maintenanceIconBackgroundColor: Colors.white.withValues(alpha: 0.1),
+            updateIconBackgroundColor: const Color(0xFFF4D03F).withValues(alpha: 0.2),
+            titleStyle: const TextStyle(
+              fontSize: 24, 
+              fontWeight: FontWeight.bold, 
+              color: Colors.white
+            ),
+            messageStyle: TextStyle(
+              fontSize: 16, 
+              color: Colors.white.withValues(alpha: 0.7)
+            ),
+            buttonGradient: const LinearGradient(
+              colors: [Color(0xFFF4D03F), Color(0xFFF4D03F)], // Solid golden color
+            ),
+            buttonTextStyle: const TextStyle(
+              fontSize: 16, 
+              fontWeight: FontWeight.bold, 
+              color: Colors.black
+            ),
           ),
           child: child!,
         );
